@@ -3,10 +3,9 @@ import loadSecretWord from "./src/script/requestHandler.js";
 
 const app = express();
 
-app.get("/", async (req, res) => {
-    res.send("Hello World")
-    let data = await loadSecretWord();
-    console.log(data)
+app.get("/api/:secretwordlength/:secretwordtype", async (req, res) => {
+    let data = await loadSecretWord(req.params.secretwordlength, req.params.secretwordtype);
+    res.json(data)
 });
 
 /*
@@ -29,6 +28,6 @@ app.use("/404", async (req, res) => {
 
 */
 
-app.listen(5080);
+app.listen(3001);
 
 export default app;
