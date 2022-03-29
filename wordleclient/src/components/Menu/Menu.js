@@ -19,7 +19,7 @@ const Menu = (props) => {
             wordLength: enteredLength,
             wordUniqueness: enteredUniqueness,
         }
-        props.gameSettingsHandler(gameData)
+        props.GameSettingsHandler(gameData)
     };
 
     return (

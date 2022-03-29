@@ -7,29 +7,23 @@ import './App.css';
 function App() {
   const [gameId, setGameId] = useState(null);
   const [menuState, setMenuState] = useState("started");
-  const [gameSettings, setGameSettings] = useState(null);
 
-
-  const startGame = async () => {
-    const res = await fetch("http://localhost:3001/api/game", {
-      method: "post",
-    });
-    const data = await res.json();
-    setGameId(data.id)
-    console.log(gameId)
-  };
-
-
-  const gameSettingsHandler = setting => {
-    setGameSettings(setting)
+  const GameSettingsHandler = setting => {
+    const startGame = async () => {
+      const res = await fetch("http://localhost:3001/api/game/" + setting.wordLength + "/" + setting.wordUniqueness, {
+        method: "post",
+      });
+      const data = await res.json();
+      setGameId(data.id);
+      console.log(gameId)
+    };
     startGame();
   }
-
 
   if (menuState === "started") {
     return (
       <div className="App">
-        <Menu gameSettingsHandler={gameSettingsHandler} />
+        <Menu GameSettingsHandler={GameSettingsHandler} />
       </div>
     )
   }

@@ -1,9 +1,13 @@
 import express from "express";
 import * as uuid from "uuid";
+import cors from "cors";
 
 import loadSecretWord from "./src/script/requestHandler.js";
 
 const app = express();
+
+app.use(cors());
+app.use(express.json());
 
 const GAMES = [];
 
