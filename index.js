@@ -1,11 +1,21 @@
 import express from "express";
+import * as uuid from "uuid";
+
 import loadSecretWord from "./src/script/requestHandler.js";
 
 const app = express();
 
-app.get("/api/:secretwordlength/:secretwordtype", async (req, res) => {
-    let data = await loadSecretWord(req.params.secretwordlength, req.params.secretwordtype);
-    res.json(data)
+const GAMES = [];
+
+app.post("/api/game/:secretwordlength/:secretwordtype", async (req, res) => {
+    const game = {
+        secretWord: loadSecretWord(req.params.secretwordlength, req.params.secretwordtype),
+        guesses: [],
+        id: uuid.v4(),
+        startTime: new Date()
+    };
+
+    res.status(201).json({ id: game.id })
 });
 
 /*

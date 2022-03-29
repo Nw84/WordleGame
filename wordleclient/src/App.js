@@ -1,27 +1,51 @@
-import React from "react";
-import logo from './logo.svg';
+import { useState, useEffect } from 'react';
+import Game from "./components/Game/Game.js";
+import Menu from "./components/Menu/Menu.js";
 import './App.css';
-let secretwordlength = 8;
-let secretwordtype = 1;
+
 
 function App() {
-  const [secretWord, setSecretWord] = React.useState(null);
-  React.useEffect(() => {
-    fetch("/api/" + secretwordlength + "/" + secretwordtype)
-      .then((res) => res.json())
-      .then((secretWord) => setSecretWord(secretWord));
-  }, []);
+  const [gameId, setGameId] = useState(null);
+  const [menuState, setMenuState] = useState("started");
+  const [gameSettings, setGameSettings] = useState(null);
 
 
+  const startGame = async () => {
+    const res = await fetch("http://localhost:3001/api/game", {
+      method: "post",
+    });
+    const data = await res.json();
+    setGameId(data.id)
+    console.log(gameId)
+  };
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!secretWord ? "Loading..." : secretWord}</p>
-      </header>
-    </div>
-  );
+
+  const gameSettingsHandler = setting => {
+    setGameSettings(setting)
+    startGame();
+  }
+
+
+  if (menuState === "started") {
+    return (
+      <div className="App">
+        <Menu gameSettingsHandler={gameSettingsHandler} />
+      </div>
+    )
+  }
+
+  if (gameId) {
+    return (
+      <div className="App">
+        <Game gameId={gameId} />
+      </div>
+    )
+  } else {
+    return (
+      <div className="App">Loading...</div>
+    )
+  }
+
 }
 
 export default App;
