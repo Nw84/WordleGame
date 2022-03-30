@@ -23,7 +23,7 @@ app.post("/api/games/:secretwordlength/:secretwordtype", async (req, res) => {
     };
     GAMES.push(game);
 
-    res.status(201).json({ id: game.id, length: game.secretWord.length })
+    res.status(201).json({ id: game.id, wordLength: game.secretWord.length })
 });
 
 app.post("/api/game/:id/guesses", (req, res) => {

@@ -9,7 +9,6 @@ const Game = ({ gameId, wordLength }) => {
     const [result, setResult] = useState(null);
     const [name, setName] = useState("");
 
-
     const handleKeyUp = async (keyCode) => {
         if (keyCode === "Enter") {
             setInputText("");
@@ -68,9 +67,11 @@ const Game = ({ gameId, wordLength }) => {
     return (
         <div className="Game">
             <input
+                className="inputBox"
                 value={inputText}
                 onChange={(ev) => setInputText(ev.target.value)}
                 onKeyUp={(ev) => handleKeyUp(ev.code)}
+                type="text"
                 maxLength={wordLength}
                 minLength={wordLength}
             />

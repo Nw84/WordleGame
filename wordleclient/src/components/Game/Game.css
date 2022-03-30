@@ -1,3 +1,10 @@
+.inputBox {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #000000;
+    font-size: 28px;
+}
+
 .rows .row {
     margin-top: 1rem;
     display: inline-block;
