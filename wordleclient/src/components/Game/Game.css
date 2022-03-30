@@ -1,6 +1,9 @@
 .rows .row {
+    margin-top: 1rem;
     display: inline-block;
-    margin: 5px;
-    width: 25px;
+    width: 40px;
+    margin-right: 2px;
+    border: 2px black solid; 
+    font-weight: 600;
 }
 
