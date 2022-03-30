@@ -14,11 +14,10 @@ const GAMES = [];
 
 app.post("/api/games/:secretwordlength/:secretwordtype", async (req, res) => {
     const secretWord = await loadSecretWord(req.params.secretwordlength, req.params.secretwordtype);
-    console.log("Hej")
-    console.log(secretWord);
     const game = {
         secretWord: secretWord,
         guesses: [],
+        feedback: [],
         id: uuid.v4(),
         startTime: new Date()
     };
@@ -32,6 +31,7 @@ app.post("/api/game/:id/guesses", (req, res) => {
     if (game) {
         const guess = checkWord(game.secretWord, req.body.guess)
         game.guesses.push(req.body.guess);
+        game.feedback.push(guess)
 
         if (req.body.guess === game.secretWord) {
             game.endTime = new Date();
@@ -45,7 +45,7 @@ app.post("/api/game/:id/guesses", (req, res) => {
             res.status(201).json({
                 guesses: game.guesses,
                 correct: false,
-                feedback: guess,
+                feedback: game.feedback,
             });
         }
     } else {

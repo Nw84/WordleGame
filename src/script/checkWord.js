@@ -6,19 +6,19 @@ export default function (secretWord, guess) {
     let answerArray = array2.map(item => (
         {
             letter: item,
-            result: "incorrect"
+            result: "red"
         }
     ));
 
     if (array2.length !== array1.length) {
-        answerArray = "error, the guess has to be the same length as the secret word" + " (" + array1.length + ")";
+        answerArray = null;
     } else {
 
         for (let i = 0; i < array2.length; i++) {
             if (array2[i] === array1[i]) {
                 answerArray.splice([i], 1, {
                     letter: array2[i],
-                    result: "correct"
+                    result: "green"
                 })
                 array1[i] = "!";
                 array2[i] = "&";
@@ -30,7 +30,7 @@ export default function (secretWord, guess) {
                     array1[j] = "?";
                     answerArray.splice([i], 1, {
                         letter: array2[i],
-                        result: "missplaced"
+                        result: "yellow"
                     })
                     array2[i] = "&"
                 }

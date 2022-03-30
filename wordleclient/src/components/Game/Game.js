@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./Game.css";
 
-const Game = ({ gameId }) => {
+const Game = ({ gameId, wordLength }) => {
     const [gameState, setGameState] = useState("playing");
     const [inputText, setInputText] = useState("");
     const [guesses, setGuesses] = useState([]);
+    const [feedback, setFeedback] = useState([]);
     const [result, setResult] = useState(null);
     const [name, setName] = useState("");
 
@@ -31,6 +32,7 @@ const Game = ({ gameId }) => {
             }
 
             setGuesses(data.guesses);
+            setFeedback(data.feedback);
         }
     };
 
@@ -68,10 +70,19 @@ const Game = ({ gameId }) => {
                 value={inputText}
                 onChange={(ev) => setInputText(ev.target.value)}
                 onKeyUp={(ev) => handleKeyUp(ev.code)}
+                maxLength={wordLength}
+                minLength={wordLength}
             />
-            <ul>
-                {guesses.map((guess, index) => (
-                    <li key={index}>{guess}</li>
+
+            <ul className="feedback__list">
+                {feedback.map((item, i) => (
+                    <li key={i}>
+                        {item.map((obj) =>
+                            <div style={{ backgroundColor: obj.result }}>
+                                <p>{obj.letter}</p>
+                            </div>
+                        )}
+                    </li>
                 ))}
             </ul>
         </div>
