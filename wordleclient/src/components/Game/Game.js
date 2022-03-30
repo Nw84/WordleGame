@@ -9,6 +9,7 @@ const Game = ({ gameId, wordLength }) => {
     const [result, setResult] = useState(null);
     const [name, setName] = useState("");
 
+
     const handleKeyUp = async (keyCode) => {
         if (keyCode === "Enter") {
             setInputText("");
@@ -73,18 +74,15 @@ const Game = ({ gameId, wordLength }) => {
                 maxLength={wordLength}
                 minLength={wordLength}
             />
-
-            <ul className="feedback__list">
-                {feedback.map((item, i) => (
-                    <li key={i}>
-                        {item.map((obj) =>
-                            <div style={{ backgroundColor: obj.result }}>
-                                <p>{obj.letter}</p>
-                            </div>
-                        )}
-                    </li>
-                ))}
-            </ul>
+            {feedback.map((item, i) => (
+                <div className="rows" key={i}>
+                    {item.map((obj, y) =>
+                        <div key={y} className="row" style={{ backgroundColor: obj.result }}>
+                            <p>{obj.letter}</p>
+                        </div>
+                    )}
+                </div>
+            ))}
         </div>
     );
 

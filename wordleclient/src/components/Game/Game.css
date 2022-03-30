@@ -1,3 +1,6 @@
-.feedback__list {
-    display: inline;
+.rows .row {
+    display: inline-block;
+    margin: 5px;
+    width: 25px;
 }
+
