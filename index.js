@@ -12,8 +12,8 @@ app.use(express.json());
 
 const GAMES = [];
 
-app.post("/api/games/:secretwordlength/:secretwordtype", async (req, res) => {
-    const secretWord = await loadSecretWord(req.params.secretwordlength, req.params.secretwordtype);
+app.post("/api/game/", async (req, res) => {
+    const secretWord = await loadSecretWord(req.query.wordlength, req.query.unique);
     const game = {
         secretWord: secretWord,
         guesses: [],
