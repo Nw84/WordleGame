@@ -36,6 +36,20 @@ const Game = ({ gameId, wordLength }) => {
         }
     };
 
+    const handleSubmit = async (ev) => {
+        ev.preventDefault();
+
+        await fetch(`http://localhost:3001/api/highscore`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ firstName: name, id: gameId }),
+        });
+
+        setGameState("end");
+    };
+
     if (gameState === "won") {
         const duration =
             (new Date(result.endTime) - new Date(result.startTime)) / 1000;
@@ -46,7 +60,7 @@ const Game = ({ gameId, wordLength }) => {
                 <p>Guesses: {guesses.length}</p>
                 <p>Duration: {duration}s</p>
                 <h2>Add to highscore</h2>
-                <form onSubmit>
+                <form onSubmit={handleSubmit}>
                     <input
                         value={name}
                         onChange={(ev) => setName(ev.target.value)}
