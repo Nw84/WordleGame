@@ -9,31 +9,30 @@ const Game = ({ gameId, wordLength }) => {
     const [result, setResult] = useState(null);
     const [name, setName] = useState("");
 
-    const handleKeyUp = async (keyCode) => {
-        if (keyCode === "Enter") {
-            setInputText("");
+    const handleGuess = async (e) => {
+        e.preventDefault();
+        setInputText("");
 
-            const res = await fetch(
-                `http://localhost:5080/api/game/${gameId}/guesses`,
-                {
-                    method: "post",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ guess: inputText }),
-                }
-            );
-
-            const data = await res.json();
-
-            if (data.correct) {
-                setResult(data.result);
-                setGameState("won");
+        const res = await fetch(
+            `http://localhost:5080/api/game/${gameId}/guesses`,
+            {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ guess: inputText }),
             }
+        );
 
-            setGuesses(data.guesses);
-            setFeedback(data.feedback);
+        const data = await res.json();
+
+        if (data.correct) {
+            setResult(data.result);
+            setGameState("won");
         }
+
+        setGuesses(data.guesses);
+        setFeedback(data.feedback);
     };
 
     const handleSubmit = async (ev) => {
@@ -80,15 +79,18 @@ const Game = ({ gameId, wordLength }) => {
 
     return (
         <div className="Game">
-            <input
-                className="inputBox"
-                value={inputText}
-                onChange={(ev) => setInputText(ev.target.value)}
-                onKeyUp={(ev) => handleKeyUp(ev.code)}
-                type="text"
-                maxLength={wordLength}
-                minLength={wordLength}
-            />
+            <form onSubmit={handleGuess}>
+                <input
+                    className="inputBox"
+                    value={inputText}
+                    onChange={(ev) => setInputText(ev.target.value)}
+                    type="text"
+                    maxLength={wordLength}
+                    minLength={wordLength}
+                    required={true}
+                />
+                <button type="submit">Guess</button>
+            </form>
             {feedback.map((item, i) => (
                 <div className="rows" key={i}>
                     {item.map((obj, y) =>
