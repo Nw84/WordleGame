@@ -6,15 +6,18 @@
 
     .highscore-list {
         text-align: center;
+        margin-top: 5rem;
         
-
        .highscore-item{
-          background-color: antiquewhite;
-          padding: 5px;
-          border: 1px white solid;
-          width: 400px;
-          height: 200px;
-          text-align: left;
-       }  
+            border: 1px white solid;
+            text-align: left;
+            transition: 0.3s;
+            margin: 1rem;
+
+            .highscore-item-time {
+                margin-left: 9rem;
+                background: yellow;
+            }
+        }
     }
 }
