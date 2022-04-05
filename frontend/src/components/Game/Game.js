@@ -14,7 +14,7 @@ const Game = ({ gameId, wordLength }) => {
             setInputText("");
 
             const res = await fetch(
-                `http://localhost:3001/api/game/${gameId}/guesses`,
+                `http://localhost:5080/api/game/${gameId}/guesses`,
                 {
                     method: "post",
                     headers: {
@@ -39,7 +39,7 @@ const Game = ({ gameId, wordLength }) => {
     const handleSubmit = async (ev) => {
         ev.preventDefault();
 
-        await fetch(`http://localhost:3001/api/highscore`, {
+        await fetch(`http://localhost:5080/api/highscore`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

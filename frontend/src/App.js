@@ -11,7 +11,7 @@ function App() {
 
   const GameSettingsHandler = setting => {
     const startGame = async () => {
-      const res = await fetch("http://localhost:3001/api/game?wordlength=" + setting.wordLength + "&unique=" + setting.wordUniqueness, {
+      const res = await fetch("http://localhost:5080/api/game?wordlength=" + setting.wordLength + "&unique=" + setting.wordUniqueness, {
         method: "post",
       });
       const data = await res.json();
