@@ -19,6 +19,10 @@ const highscoreSchema = new Schema({
         type: String,
         require: true,
     },
+    numberOfGuesses: {
+        type: Number,
+        require: true,
+    },
 });
 
 const HighScore = mongoose.model("Highscore", highscoreSchema);

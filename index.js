@@ -72,12 +72,19 @@ app.post("/api/game/:id/guesses", (req, res) => {
 app.post("/api/highscore", async (req, res) => {
     try {
         const game = GAMES.find((savedGame) => savedGame.id == req.body.id);
+        let uniqueAnswer;
         if (game) {
+            if (game.unique === "0") {
+                uniqueAnswer = "Words with repeating letters"
+            } else {
+                uniqueAnswer = "Word with unique letters"
+            }
             const newHighScore = new HighScore({
                 firstName: req.body.firstName,
                 completionTime: (game.endTime - game.startTime) / 1000,
                 wordLength: game.secretWord.length,
-                uniqueLetters: game.unique,
+                uniqueLetters: uniqueAnswer,
+                numberOfGuesses: game.guesses.length,
             });
 
             await HighScore.create(newHighScore);
