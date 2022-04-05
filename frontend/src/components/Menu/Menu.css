@@ -1,5 +1,18 @@
 .menu-container {
+    padding-top: 5rem;
     margin: 1rem auto;
     width: 50rem;
     max-width: 95%;
+}
+
+.letterSelect {
+    background-color: antiquewhite;
+}
+
+.menuSubmit {
+    background-color: antiquewhite;
+}
+
+.unique-container  {
+    padding: 1rem;
 }

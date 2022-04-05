@@ -1,8 +1,12 @@
 .inputBox {
+    margin-top: 5rem;
     background: transparent;
     border: none;
     border-bottom: 1px solid #000000;
     font-size: 28px;
+}
+.rows {
+    margin-left: 8px;
 }
 
 .rows .row {
@@ -14,3 +18,21 @@
     font-weight: 600;
 }
 
+
+.guessSubmit {
+    background-color: antiquewhite;
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0 auto;
+    margin-top: 1rem;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    text-align:center;
+    transition: all 0.2s;
+}
+
+.guessSubmit:hover {
+    transform: scale(1.1, 1.1);
+}

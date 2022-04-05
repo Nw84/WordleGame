@@ -29,7 +29,7 @@ const Menu = (props) => {
             <form onSubmit={submitHandler}>
                 <div className="letters-container">
                     <p>How many letters ?</p>
-                    <select value={enteredLength} onChange={lengthChangeHandler}>
+                    <select value={enteredLength} onChange={lengthChangeHandler} className="letterSelect">
                         <option value="5">Play with a 5-letter word</option>
                         <option value="6">Play with a 6-letter word</option>
                         <option value="7">Play with a 7-letter word</option>
@@ -39,9 +39,10 @@ const Menu = (props) => {
                 </div>
                 <div className="unique-container" onChange={uniqueChangeHandler}>
                     <input type="radio" value="0" name="unique" defaultChecked />Allow repeating characters (e.g. HELLO)
+                    <br />
                     <input type="radio" value="1" name="unique" />Allow unique characters only (e.g. CURLY)
                 </div>
-                <button type="submit">Start Game</button>
+                <button type="submit" className="menuSubmit">Start Game</button>
             </form>
         </div >
     )

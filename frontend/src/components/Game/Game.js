@@ -88,8 +88,11 @@ const Game = ({ gameId, wordLength }) => {
                     maxLength={wordLength}
                     minLength={wordLength}
                     required={true}
+                    style={{ width: wordLength * 40 + "px" }}
                 />
-                <button type="submit">Guess</button>
+                <div className="guessSubmit-container">
+                    <button type="submit" className="guessSubmit">Guess</button>
+                </div>
             </form>
             {feedback.map((item, i) => (
                 <div className="rows" key={i}>
