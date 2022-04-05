@@ -3,13 +3,28 @@ import * as uuid from "uuid";
 import cors from "cors";
 import mongoose from "mongoose";
 import 'dotenv/config';
+import fetch from "node-fetch"
 
 import loadSecretWord from "./requestHandler.js";
 import checkWord from "./checkWord.js";
 import HighScore from "../../model/highscore.js";
 
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import expressLayouts from "express-ejs-layouts";
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename);
+
 const app = express();
 const uri = process.env.MONGODB_CONNECTION_STRING;
+
+app.set("view engine", "ejs");
+app.set("views", "./views")
+app.use(expressLayouts)
+app.set("layout", "./layouts/index")
+
+app.use(express.static(__dirname + "/public"));
 
 mongoose.connect(uri, {
     useNewUrlParser: true,
@@ -75,9 +90,9 @@ app.post("/api/highscore", async (req, res) => {
         let uniqueAnswer;
         if (game) {
             if (game.unique === "0") {
-                uniqueAnswer = "Words with repeating letters"
+                uniqueAnswer = "words with repeating letters"
             } else {
-                uniqueAnswer = "Word with unique letters"
+                uniqueAnswer = "words with unique letters"
             }
             const newHighScore = new HighScore({
                 firstName: req.body.firstName,
@@ -106,15 +121,14 @@ app.get("/api/highscore", async (req, res) => {
     })
 })
 
-/*
-app.get("/about", async (req, res) => {
-    res.render("about");
+app.get("/", async (req, res) => {
+    const list = await HighScore.find().sort({ completionTime: 1 }).limit(20);
+    res.render("highscore", { list, page_name: "highscore" });
 });
 
 app.use("/404", async (req, res) => {
-    res.render("404");
+    res.render("404", { page_name: "error" });
     res.status(404);
 });
-*/
 
 export default app;
