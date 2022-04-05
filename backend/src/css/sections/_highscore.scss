@@ -1,0 +1,20 @@
+.highscore-content {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+    .highscore-list {
+        text-align: center;
+        
+
+       .highscore-item{
+          background-color: antiquewhite;
+          padding: 5px;
+          border: 1px white solid;
+          width: 400px;
+          height: 200px;
+          text-align: left;
+       }  
+    }
+}

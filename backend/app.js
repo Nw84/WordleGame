@@ -3,11 +3,10 @@ import * as uuid from "uuid";
 import cors from "cors";
 import mongoose from "mongoose";
 import 'dotenv/config';
-import fetch from "node-fetch"
 
-import loadSecretWord from "./requestHandler.js";
-import checkWord from "./checkWord.js";
-import HighScore from "../../model/highscore.js";
+import loadSecretWord from "./src/script/requestHandler.js";
+import checkWord from "./src/script/checkWord.js";
+import HighScore from "./model/highscore.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
