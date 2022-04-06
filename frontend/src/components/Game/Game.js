@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Game.css";
 
-const Game = ({ gameId, wordLength }) => {
+const Game = ({ gameId, wordLength, menuStateHandler }) => {
     const [gameState, setGameState] = useState("playing");
     const [inputText, setInputText] = useState("");
     const [guesses, setGuesses] = useState([]);
@@ -67,12 +67,16 @@ const Game = ({ gameId, wordLength }) => {
                     />
                     <input type="submit" />
                 </form>
+                <p>Or do you just want to play again ?</p>
+                <button onClick={() => menuStateHandler("started")} className="guessSubmit">Play again</button>
             </div>
         );
     } else if (gameState === "end") {
         return (
             <div className="Game">
                 <h1>Done!</h1>
+                <p>Do you want to play again ?</p>
+                <button onClick={() => menuStateHandler("started")} className="guessSubmit">Play again</button>
             </div>
         );
     }
@@ -107,8 +111,5 @@ const Game = ({ gameId, wordLength }) => {
     );
 
 }
-
-
-
 
 export default Game; 

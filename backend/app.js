@@ -11,6 +11,7 @@ import HighScore from "./model/highscore.js";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 import expressLayouts from "express-ejs-layouts";
+import { render } from "ejs";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename);
@@ -120,10 +121,14 @@ app.get("/api/highscore", async (req, res) => {
     })
 })
 
-app.get("/", async (req, res) => {
+app.get("/highscore", async (req, res) => {
     const list = await HighScore.find().sort({ completionTime: 1 }).limit(20);
     res.render("highscore", { list, page_name: "highscore" });
 });
+
+app.get("/information", async (req, res) => {
+    res.render("information", { page_name: "information" })
+})
 
 app.use("/404", async (req, res) => {
     res.render("404", { page_name: "error" });

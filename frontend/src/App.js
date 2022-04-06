@@ -22,10 +22,15 @@ function App() {
     startGame();
   }
 
+  const menuStateHandler = input => {
+    setMenuState(input)
+  }
+
+
   if (menuState === "started") {
     return (
       <div className="App">
-        <Menu GameSettingsHandler={GameSettingsHandler} />
+        <Menu GameSettingsHandler={GameSettingsHandler} menuStateHandler={menuStateHandler} />
       </div>
     )
   }
@@ -33,7 +38,7 @@ function App() {
   if (gameId) {
     return (
       <div className="App">
-        <Game gameId={gameId} wordLength={wordLength} />
+        <Game gameId={gameId} wordLength={wordLength} menuStateHandler={menuStateHandler} />
       </div>
     )
   } else {

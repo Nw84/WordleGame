@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Menu.css";
 
-const Menu = (props) => {
+const Menu = ({ GameSettingsHandler, menuStateHandler }) => {
     const [enteredLength, setEnteredLength] = useState(5);
     const [enteredUniqueness, setEnteredUniqueness] = useState(0);
 
@@ -19,7 +19,8 @@ const Menu = (props) => {
             wordLength: enteredLength,
             wordUniqueness: enteredUniqueness,
         }
-        props.GameSettingsHandler(gameData)
+        GameSettingsHandler(gameData)
+        menuStateHandler("loading")
     };
 
     return (
