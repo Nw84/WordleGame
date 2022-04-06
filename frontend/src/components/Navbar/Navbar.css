@@ -1,0 +1,30 @@
+
+
+.main-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    height: 100px;
+}
+ 
+.main-menu a:hover  {
+    color: goldenrod;
+}
+        
+.main-menu li {
+    list-style-type: none;   
+}
+    
+.menu-btn {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-size: 1.4rem;
+}
+
+.menu-btn-active {
+    text-decoration: underline solid goldenrod;
+    color: goldenrod;
+}

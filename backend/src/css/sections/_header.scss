@@ -23,21 +23,11 @@ header {
 .menu-btn {
     font-weight: bold;
     text-decoration: none;
-   
     color: black;
-    background-color: white;
-    padding: 10px 30px;
-    border: 2px solid black;
-    border-radius: 6px;
-    box-shadow: 0px 0px 10px rgba(black, 0.3);
+    font-size: 1.5rem;
 }
 
 .menu-btn-active {
-    border-color: goldenrod;
-    box-shadow: 0px 0px 10px rgba(goldenrod, 0.3);
+    text-decoration: underline solid goldenrod;
+    color: goldenrod;
 }
-
-.disabledButton {
-    background-color: gray;
-}
-

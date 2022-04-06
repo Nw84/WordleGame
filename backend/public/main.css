@@ -41,15 +41,8 @@ header .main-menu {
   font-weight: bold;
   text-decoration: none;
   color: black;
-  background-color: white;
-  padding: 10px 30px;
-  border: 2px solid black;
-  border-radius: 6px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); }
+  font-size: 1.5rem; }
 
 .menu-btn-active {
-  border-color: goldenrod;
-  box-shadow: 0px 0px 10px rgba(218, 165, 32, 0.3); }
-
-.disabledButton {
-  background-color: gray; }
+  text-decoration: underline solid goldenrod;
+  color: goldenrod; }

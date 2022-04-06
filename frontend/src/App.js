@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Game from "./components/Game/Game.js";
 import Menu from "./components/Menu/Menu.js";
+import Navbar from './components/Navbar/Navbar.js';
 import './App.css';
 
 
@@ -30,6 +31,7 @@ function App() {
   if (menuState === "started") {
     return (
       <div className="App">
+        <Navbar />
         <Menu GameSettingsHandler={GameSettingsHandler} menuStateHandler={menuStateHandler} />
       </div>
     )
@@ -38,12 +40,16 @@ function App() {
   if (gameId) {
     return (
       <div className="App">
+        <Navbar />
         <Game gameId={gameId} wordLength={wordLength} menuStateHandler={menuStateHandler} />
       </div>
     )
   } else {
     return (
-      <div className="App">Loading...</div>
+      <div className="App">
+        <Navbar />
+        <h4>Loading...</h4>
+      </div>
     )
   }
 
