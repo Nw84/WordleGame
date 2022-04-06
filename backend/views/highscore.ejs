@@ -4,7 +4,10 @@
         <h1> Highscore List </h1>
         <% list.forEach(function(item) { %>
         <div class="highscore-item">
-            <h4><%= item.firstName%> <span class="highscore-item-time"><%= item.completionTime%></span></h4> 
+            <div class="highscore-item-top">
+                <h4><%= item.firstName%></h4>
+                <span class="highscore-item-time"><%= item.completionTime%></span>
+            </div>
             <p><%= item.wordLength%>-letter <%= item.uniqueLetters%></p>
             <p>Number of guesses: <%= item.numberOfGuesses%></p>
         </div>

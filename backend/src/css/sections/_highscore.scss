@@ -12,11 +12,17 @@
             border: 1px white solid;
             text-align: left;
             transition: 0.3s;
-            margin: 1rem;
+            
+            .highscore-item-top {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+           
 
-            .highscore-item-time {
-                margin-left: 9rem;
-                background: yellow;
+                .highscore-item-time {
+                    background: yellow;
+                }
             }
         }
     }
