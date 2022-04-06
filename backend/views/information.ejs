@@ -1,0 +1,22 @@
+<section class="information-content">
+
+    <div class="information-inner">
+        <p>
+            This is a fairly basic Wordle Game that I made for an assignment in my Javascript full stack course. 
+        </p> 
+        <p>
+            I wanted to make it hard to cheat at the game, so most of the game logic is on the server side which is made with node.js. The frontend of the game was made in React and it gets the  feedback on the guesses from the server through http requests with fetch.
+        </p>
+
+        <p>
+            Because of that each game gets a unique id that is generated with uuid on the server, so it can keep track of the time and progress. When the user guesses the correct word they will be given the option to enter their name and send their result to highscore list. Which is saved on a database on mongodb atlas. 
+        </p>
+        <p>
+            I used ejs as my template engine to render a dynamic highscore list that gets the data from the mongodb database. As well as this static page you are on now.
+        </p>
+
+            
+
+       
+    </div>
+</section>
