@@ -10,8 +10,8 @@ import HighScore from "./model/highscore.js";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import path from "path";
 import expressLayouts from "express-ejs-layouts";
-import { render } from "ejs";
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename);
@@ -35,6 +35,8 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("MongoDb database connection established succesfully");
 });
+
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.use(cors());
 app.use(express.json());
@@ -120,6 +122,10 @@ app.get("/api/highscore", async (req, res) => {
         res.send(result);
     })
 })
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.get("/highscore", async (req, res) => {
     const list = await HighScore.find().sort({ completionTime: 1 }).limit(20);
