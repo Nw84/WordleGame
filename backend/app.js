@@ -98,7 +98,7 @@ app.post("/api/highscore", async (req, res) => {
             }
             const newHighScore = new HighScore({
                 firstName: req.body.firstName,
-                completionTime: (game.endTime - game.startTime) / 1000,
+                completionTime: ((game.endTime - game.startTime) / 1000 / 60).toFixed(2),
                 wordLength: game.secretWord.length,
                 uniqueLetters: uniqueAnswer,
                 numberOfGuesses: game.guesses.length,
@@ -134,7 +134,6 @@ app.get("/highscore", async (req, res) => {
 
 app.get("/highscore/:wordlength/:unique", async (req, res) => {
     let list;
-    console.log(req.params.unique)
     if (Number(req.params.unique) === 0) {
         list = await HighScore.find({ $and: [{ uniqueLetters: "words with repeating letters" }, { wordLength: req.params.wordlength }] }).sort({ completionTime: 1 }).limit(20);
         res.render("highscore", { list, page_name: "highscore" });

@@ -7,15 +7,15 @@
         <div class="highscore-item">
             <div class="highscore-item-top">
                 <h4><%= item.firstName%></h4>
-                <span class="highscore-item-time"><%= item.completionTime%></span>
+                <span class="highscore-item-time"><%= item.completionTime%>min</span>
             </div>
             <p><%= item.wordLength%>-letter <%= item.uniqueLetters%></p>
             <p>Number of guesses: <%= item.numberOfGuesses%></p>
         </div>
         <% }); %>  
         <% } else { %>
-                <p>It does not seem to be any played games with those settings on the list</p>
-                <% } %>
+                <p>It does not seem to be any recorded highscores with those gamesettings</p>
+        <% } %>
     </div>
 </section>
 

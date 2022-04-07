@@ -52,13 +52,13 @@ const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
 
     if (gameState === "won") {
         const duration =
-            (new Date(result.endTime) - new Date(result.startTime)) / 1000;
+            (new Date(result.endTime) - new Date(result.startTime)) / 1000 / 60;
         return (
             <div className="Game">
                 <h1>You won!</h1>
                 <p>The correct word was {guesses.at(-1)}</p>
                 <p>Guesses: {guesses.length}</p>
-                <p>Duration: {duration}s</p>
+                <p>Duration: {duration.toFixed(2)}min</p>
                 <h2>Add to highscore</h2>
                 <form onSubmit={handleSubmit}>
                     <input
