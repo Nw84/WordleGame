@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Menu.css";
 
 const Menu = ({ GameSettingsHandler, menuStateHandler }) => {
-    const [enteredLength, setEnteredLength] = useState(5);
+    const [enteredLength, setEnteredLength] = useState(4);
     const [enteredUniqueness, setEnteredUniqueness] = useState(0);
 
     const lengthChangeHandler = (event) => {
@@ -31,6 +31,7 @@ const Menu = ({ GameSettingsHandler, menuStateHandler }) => {
                 <div className="letters-container">
                     <p>How many letters ?</p>
                     <select value={enteredLength} onChange={lengthChangeHandler} className="letterSelect">
+                        <option value="4">Play with a 4-letter word</option>
                         <option value="5">Play with a 5-letter word</option>
                         <option value="6">Play with a 6-letter word</option>
                         <option value="7">Play with a 7-letter word</option>

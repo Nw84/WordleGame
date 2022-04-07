@@ -1,9 +1,13 @@
-import fetch from "node-fetch";
+import { readFile } from "fs/promises"
 
 export async function loadSecretWord(secretwordlength, secretwordtype) {
-    const res = await fetch("https://raw.githubusercontent.com/dwyl/english-words/master/words_dictionary.json");
-    const payload = await res.json();
-    const data = Object.keys(payload);
+    const json = JSON.parse(
+        await readFile(
+            new URL("./words_dictionary.json", import.meta.url)
+        )
+    );
+
+    const data = Object.keys(json);
 
     const filteredData = data.filter((word) => {
         return word.length === Number(secretwordlength);
