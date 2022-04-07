@@ -65,6 +65,7 @@ const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
                         value={name}
                         onChange={(ev) => setName(ev.target.value)}
                         placeholder="Your name"
+                        maxLength={20}
                     />
                     <input type="submit" />
                 </form>
