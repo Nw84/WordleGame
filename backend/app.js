@@ -132,6 +132,20 @@ app.get("/highscore", async (req, res) => {
     res.render("highscore", { list, page_name: "highscore" });
 });
 
+app.get("/highscore/:wordlength/:unique", async (req, res) => {
+    let list;
+    console.log(req.params.unique)
+    if (Number(req.params.unique) === 0) {
+        list = await HighScore.find({ $and: [{ uniqueLetters: "words with repeating letters" }, { wordLength: req.params.wordlength }] }).sort({ completionTime: 1 }).limit(20);
+        res.render("highscore", { list, page_name: "highscore" });
+    } else if (Number(req.params.unique) === 1) {
+        list = await HighScore.find({ $and: [{ uniqueLetters: "words with unique letters" }, { wordLength: req.params.wordlength }] }).sort({ completionTime: 1 }).limit(20);
+        res.render("highscore", { list, page_name: "highscore" });
+    } else {
+        res.status(404).render("404", { page_name: "error" })
+    }
+});
+
 app.get("/information", async (req, res) => {
     res.render("information", { page_name: "information" })
 })

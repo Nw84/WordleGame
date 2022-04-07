@@ -2,6 +2,7 @@
 
     <div class="highscore-list">
         <h1> Highscore List </h1>
+        <% if(list.length > 0 ) { %>
         <% list.forEach(function(item) { %>
         <div class="highscore-item">
             <div class="highscore-item-top">
@@ -12,7 +13,9 @@
             <p>Number of guesses: <%= item.numberOfGuesses%></p>
         </div>
         <% }); %>  
- 
+        <% } else { %>
+                <p>It does not seem to be any played games with those settings on the list</p>
+                <% } %>
     </div>
 </section>
 

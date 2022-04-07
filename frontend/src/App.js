@@ -9,8 +9,10 @@ function App() {
   const [gameId, setGameId] = useState(null);
   const [wordLength, setWordLength] = useState(null);
   const [menuState, setMenuState] = useState("started");
+  const [highscoreUrl, setHighScoreUrl] = useState("");
 
   const GameSettingsHandler = setting => {
+    setHighScoreUrl("/" + setting.wordLength + "/" + setting.wordUniqueness)
     const startGame = async () => {
       const res = await fetch("http://localhost:5080/api/game?wordlength=" + setting.wordLength + "&unique=" + setting.wordUniqueness, {
         method: "post",
@@ -41,7 +43,7 @@ function App() {
     return (
       <div className="App">
         <Navbar />
-        <Game gameId={gameId} wordLength={wordLength} menuStateHandler={menuStateHandler} />
+        <Game gameId={gameId} wordLength={wordLength} menuStateHandler={menuStateHandler} highscoreUrl={highscoreUrl} />
       </div>
     )
   } else {

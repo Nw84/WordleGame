@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Game.css";
 
-const Game = ({ gameId, wordLength, menuStateHandler }) => {
+const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
     const [gameState, setGameState] = useState("playing");
     const [inputText, setInputText] = useState("");
     const [guesses, setGuesses] = useState([]);
@@ -21,7 +21,7 @@ const Game = ({ gameId, wordLength, menuStateHandler }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ guess: inputText }),
+                body: JSON.stringify({ guess: inputText.toLocaleLowerCase() }),
             }
         );
 
@@ -76,6 +76,9 @@ const Game = ({ gameId, wordLength, menuStateHandler }) => {
         return (
             <div className="Game">
                 <h1>Done!</h1>
+                <a href={"./highscore" + highscoreUrl}>
+                    Check how you compared to others players with the same gamesettings.
+                </a>
                 <p>Do you want to play again ?</p>
                 <button onClick={() => menuStateHandler("started")} className="guessSubmit">Play again</button>
             </div>
