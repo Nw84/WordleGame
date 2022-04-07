@@ -136,9 +136,8 @@ app.get("/information", async (req, res) => {
     res.render("information", { page_name: "information" })
 })
 
-app.use("/404", async (req, res) => {
-    res.render("404", { page_name: "error" });
-    res.status(404);
+app.use((req, res) => {
+    res.status(404).render("404", { page_name: "error" })
 });
 
 export default app;

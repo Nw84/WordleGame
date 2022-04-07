@@ -9,6 +9,7 @@ const Game = ({ gameId, wordLength, menuStateHandler }) => {
     const [result, setResult] = useState(null);
     const [name, setName] = useState("");
 
+
     const handleGuess = async (e) => {
         e.preventDefault();
         setInputText("");
