@@ -26,7 +26,7 @@
         justify-content: space-between;
         align-items: center; }
         .highscore-content .highscore-list .highscore-item .highscore-item-top .highscore-item-time {
-          background: yellow; }
+          background: antiquewhite; }
 
 header .main-menu {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -56,8 +56,16 @@ header .main-menu {
   justify-content: center;
   align-items: center;
   display: flex; }
-
-.information-inner {
-  margin-top: 5rem;
-  text-align: left;
-  width: 60%; }
+  .information-content .information-inner {
+    margin-top: 5rem;
+    text-align: left;
+    width: 60%;
+    box-shadow: 6px 6px 2px 1px rgba(10, 10, 10, 0.2);
+    border: 1px solid black;
+    padding: 1rem;
+    background-color: antiquewhite; }
+    .information-content .information-inner .information-bold {
+      font-weight: 600; }
+    @media screen and (min-device-width: 1048px) {
+      .information-content .information-inner {
+        font-size: 18px; } }

@@ -2,19 +2,38 @@
 
     <div class="information-inner">
         <p>
-            This is a fairly basic Wordle Game that I made for an assignment in my Javascript full stack course. 
+            This is a Wordle Game that I made for an assignment in my Javascript full stack course. 
         </p> 
         <p>
-            I wanted to make it hard to cheat at the game, so most of the game logic is on the server side which is made with node.js. The frontend of the game was made in React and it gets the  feedback on the guesses from the server through http requests with fetch.
+            I wanted to make it hard to cheat at the game, so most of the game logic is on the server side which is made with node.js. The frontend of the game was made in React and it gets the  feedback on the guesses from the server through http requests with fetch. The secret word is randomly selected from a json file with over 40 000+ words and it is never shared with the frontend. 
         </p>
 
         <p>
-            Because of that each game gets a unique id that is generated with uuid on the server, so it can keep track of the time and progress. When the user guesses the correct word they will be given the option to enter their name and send their result to highscore list. Which is saved on a database on mongodb atlas. 
+            Because of that each game gets a unique id that is generated with uuid on the server, so it can keep track of the time and progress. When the user guesses the correct word they will be given the option to enter their name and send their result to highscore list. Which is saved on a database on mongodb atlas. I used ejs as my template engine to render a dynamic highscore list that gets the data from the mongodb database. As well as this static page you are on now.
         </p>
         <p>
-            I used ejs as my template engine to render a dynamic highscore list that gets the data from the mongodb database. As well as this static page you are on now.
+            There is still a lot of work left with styling and animations, especially for the game itself. But i focused on getting everything working as intended and i will go back to style the project later, since it probably is a good project to have in my portfolio. 
         </p>
-
+        <p>
+            I had some minor problems with both Node and React throughout the project and one of them was that Node does not support ES modules when importing JSON files and i got the following error when importing the words "error [err_require_esm]: must use import to load es module: require() of es modules is not supported". But i eventually found the following solution. 
+        </p>  
+        <span class="information-bold">
+            import { readFile } from "fs/promises"
+        </span>
+        <p class="information-bold">
+            export async function loadSecretWord(secretwordlength, secretwordtype) {
+                const json = JSON.parse(
+                    await readFile(
+                        new URL("./words_dictionary.json", import.meta.url)
+                    )
+                );        
+        </p>
+        <p>
+            I also got the following error in react "error in plugin "react" was conflicted between "package.json » eslint-config-react-app". I found three solutions to the problem and one was to downgrade the eslint-config-react-app to version 6. The others were opening the package.json file and saving it, but that was only a temporary fix and it persited. But opening the eslint-config-react-app in visual studio code actually fixed the problem.
+        </p>
+        <p>
+            But it has been a really fun assignment and i feel that it has really helped me to develop as a programmer and it is my first time building a more "complex" system with a frontend and backend by myself. 
+        </p>
             
 
        
