@@ -33,7 +33,7 @@ const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
         }
 
         setGuesses(data.guesses);
-        setFeedback(data.feedback);
+        setFeedback(data.feedback, ...feedback);
     };
 
     const handleSubmit = async (ev) => {
@@ -77,12 +77,12 @@ const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
         return (
             <div className="Game">
                 <h1>Done!</h1>
-                <a href={"./highscore" + highscoreUrl}>
+                <a style={{ textdecoration: "none", fontWeight: "500", color: "inherit" }} href={"./highscore" + highscoreUrl}>
                     Check how you compared to others players with the same gamesettings.
                 </a>
                 <p>Do you want to play again ?</p>
                 <button onClick={() => menuStateHandler("started")} className="guessSubmit">Play again</button>
-            </div>
+            </div >
         );
     }
 
