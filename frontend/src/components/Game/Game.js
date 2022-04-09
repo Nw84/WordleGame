@@ -31,11 +31,9 @@ const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
             setResult(data.result);
             setGameState("won");
         }
-
         setGuesses(data.guesses);
-        if (data.feedback) {
-            setFeedback(data.feedback.reverse())
-        }
+        setFeedback(data.feedback);
+
     };
 
     const handleSubmit = async (ev) => {
@@ -105,7 +103,7 @@ const Game = ({ gameId, wordLength, menuStateHandler, highscoreUrl }) => {
                     <button type="submit" className="guessSubmit">Guess</button>
                 </div>
             </form>
-            {feedback && feedback.map((item, i) => (
+            {feedback && [...feedback].reverse().map((item, i) => (
                 <div className="rows" key={i}>
                     {item.map((obj, y) =>
                         <div key={y} className="row" style={{ backgroundColor: obj.result }}>
