@@ -45,7 +45,6 @@ const GAMES = [];
 
 app.post("/api/game/", async (req, res) => {
     const secretWord = await loadSecretWord(req.query.wordlength, req.query.unique);
-    console.log(secretWord);
     const game = {
         secretWord: secretWord,
         guesses: [],
@@ -116,9 +115,9 @@ app.post("/api/highscore", async (req, res) => {
     }
 })
 
+//I am currently not using this API end point, but i kept it anyway as it might be useful to have. 
 app.get("/api/highscore", async (req, res) => {
     await HighScore.find({}, (err, result) => {
-        console.log("highscore from db: ", result);
         res.send(result);
     })
 })
